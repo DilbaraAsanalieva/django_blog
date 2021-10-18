@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Beautiful Blog</title>
+</head>
+<body>
+<h1 style="text-align: center">
+    Hi, It's My Blog!
+</h1>
+<div>
+    <ul style="list-style:none; text-align: center">
+        {% for i in blogs %}
+         <li>
+             <div>
+                 <h2>{{ i.title }}</h2>
+                 <p >
+                     <img src="{{ i.image.url }}" style="width: 600px; height: 500px" alt="">
+                 </p>
+
+                 <span>Likes: {{ i.likes }}</span><br><span>Reposts: {{ i.reposts }}</span>
+                 <p>{{ i.description }}</p>
+
+             </div>
+         </li>
+         {% endfor %}
+    </ul>
+
+</div>
+
+</body>
+</html>

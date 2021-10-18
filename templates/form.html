@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form action="/blog/view" method="post">
+            {% csrf_token %}
+            <label for="first-name">First Name</label>
+            <input id="first-name" name="first_name" type="text">
+            <label for="last-name">Last Name</label>
+            <input id="last-name" name="last_name" type="text">
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>
