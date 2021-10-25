@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Post - {{ blog.title }} </title>
+</head>
+<body>
+<h1>
+    {{ blog.title }}
+</h1>
+<form enctype="multipart/form-data" action="/blog/{{ blog.id }}/change" method="post">
+    {%csrf_token%}
+    <p>
+        <label>
+            Title
+            <input  name="title" value="{{ blog.title }}" type="text">
+        </label>
+    </p>
+    <p>
+        <label for="description">Description</label>
+        <input  id="description" name="description" value="{{ blog.description }}" type="text">
+    </p>
+    <p>
+        <label for="image">Image: <a href="{{ blog.image.url }}">Your previous image</a> </label>
+        <input id="image" name="image" type="file">
+    </p>
+    <input type="submit">
+
+</form>
+</body>
+</html>

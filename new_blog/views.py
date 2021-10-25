@@ -1,6 +1,6 @@
 import datetime
 import random
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from django.shortcuts import render
 from new_blog.models import Blog, Comment  # importing models
@@ -66,3 +66,29 @@ def blog_view(request):
     return render(request, 'blog.html', context={"blogs": blogs})
 
 
+def profile_view(request):
+    user = request.user
+
+    return HttpResponse(
+        f"username: {user.username}, password: {user.password}, name: {user.first_name}, surname: {user.last_name}")
+
+
+def blog_change_view(request, id):
+    blog = Blog.objects.get(id=id)
+    if request.method == "POST":
+        data = request.POST
+        file = request.FILES
+        if data.get("title"):
+            blog.title = data["title"]
+        if data.get("description"):
+            blog.description = data["description"]
+        if file.get("image"):
+            blog.image = file["image"]
+        blog.save()
+        return HttpResponseRedirect(f"/blog/{blog.id}")
+    elif request.method == "GET":
+        context = {"blog": blog}
+        return render(request, "blog_change.html", context)
+    elif request.method == "GET":
+        context = {"blog": blog}
+        return render(request, "blog_change.html",context)

@@ -10,6 +10,15 @@
 </h1>
 <div>
     <ul style="list-style:none; text-align: center">
+        {% if request.user.is_authenticated %}
+        <p>
+            Username: {{ request.user.username }}
+        </p>
+          <a href="/blog/create" style="text-decoration: none">Create blog post</a>
+          <a href="/users/logout" style="text-decoration: none">Выйти из Аккаунта</a>
+        {% else %}
+               <a href="/users/login" style="text-decoration: none">Войти в Аккуант</a>
+        {% endif %}
         {% for i in blogs %}
          <li>
              <div>

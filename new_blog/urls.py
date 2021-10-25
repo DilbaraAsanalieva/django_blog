@@ -1,13 +1,15 @@
 from django.urls import path
-from .views import date_view, random_view, blog_view, test_form, create_blog, detail_post
 from . import views
 
 urlpatterns = [
-    path("", blog_view),
-    path("<int:id>",detail_post),
-    path("date", date_view),
-    path("random", random_view),
-    path("view",test_form),
-    path("create",create_blog),
+    path("", views.blog_view),
+    path("<int:id>",views.detail_post),
+    path("<int:id>/change",views.blog_change_view),
+    path("date", views.date_view),
+    path("random", views.random_view),
+    path("view",views.test_form),
+    path("create",views.create_blog),
+    path('profile',views.profile_view),
+
 
 ]
